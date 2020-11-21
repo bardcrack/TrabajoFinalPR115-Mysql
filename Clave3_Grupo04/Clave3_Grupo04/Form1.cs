@@ -16,6 +16,9 @@ namespace Clave3_Grupo04
         public String PasswordRoot = "root";
         public int userSelected = 0;
         public int cardTypeSelected = 0;
+        // Esta variable contempla el numero maximo de intentos fallidos permitidos antes de que se cierre el programa
+        public int intentosFallidos = 3;
+
 
         /// <summary>
         /// Modificar el valor de las variables para la correcta conexion con la base de datos.
@@ -52,6 +55,15 @@ namespace Clave3_Grupo04
                 MessageBox.Show(ex.Message);
             }
         }
+        private void resetFormNewUser()
+        {
+            txtNewNickname.Text = "";
+            txtNewEmail.Text = "";
+            txtNewPassword.Text = "";
+            txtNewFirstName.Text = "";
+            txtNewLastName.Text = "";
+            isEmployeeCheckBox.Checked = false;
+        }
         /// <summary>
         /// Cerrar el formulario por que se ha cancelado el inicio de sesion
         /// </summary>
@@ -69,6 +81,37 @@ namespace Clave3_Grupo04
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        /// <summary>
+        /// Metodo para poder iniciar sesion en la plataforma segun los valores especificados
+        /// por defecto hay un usuario root en todo el sistema con el mismo nombre para la
+        /// contraseña.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (txtUser.Text == UserRoot && txtPassword.Text == PasswordRoot)
+            {
+                groupLogin.Visible = false;
+                menuStrip1.Visible = true;
+                tabControl1.Visible = true;
+                this.resetFormNewUser();
+            }
+            else
+            {
+                MessageBox.Show("Lo sentimos credenciales incorrectas vuelve a intentarlo nuevamente.");
+                intentosFallidos--;
+                if (intentosFallidos == 0)
+                {
+                    DialogResult results = MessageBox.Show("Has fallado muchas veces, cerraremos la aplicacion para que lo intentes mas tarde.", "Demasiados intentos", MessageBoxButtons.OK);
+                    if (results == DialogResult.OK)
+                    {
+                        this.Close();
+                        MessageBox.Show("Se ha cortado la conexion a la base");
+                    }
+                }
+            }
         }
     }
 }
