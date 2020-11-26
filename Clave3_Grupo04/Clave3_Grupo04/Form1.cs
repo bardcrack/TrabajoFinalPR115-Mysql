@@ -10,11 +10,11 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
+
 namespace Clave3_Grupo04
 {
     public partial class Form1 : Form
     {
-
         TabPage current;
         public String UserRoot = "root";
         public String PasswordRoot = "root";
@@ -43,9 +43,8 @@ namespace Clave3_Grupo04
             /// Para detectar cual es el Tab activo
             tabControl1.Selecting += new TabControlCancelEventHandler(tabControl1_Selecting);
             tabControl2.Selecting += new TabControlCancelEventHandler(tabControl2_Selecting);
-            /*tabControl3.Selecting += new TabControlCancelEventHandler(tabControl3_Selecting);
             tabControl4.Selecting += new TabControlCancelEventHandler(tabControl4_Selecting);
-            */
+            //tabControl4.Selecting += new TabControlCancelEventHandler(tabControl4_Selecting);
         }
         void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -84,21 +83,15 @@ namespace Clave3_Grupo04
             }
             toolStripStatusLabel1.Text = TabName;
         }
-        /*
-        void tabControl3_Selecting(object sender, TabControlCancelEventArgs e)
+        
+        void tabControl4_Selecting(object sender, TabControlCancelEventArgs e)
         {
             current = (sender as TabControl).SelectedTab;
             String TabName = current.ToString().Replace("TabPage: {", "").Replace("}", "");
-            if (TabName == "Editar")
-            {
-                textBox12.Enabled = false;
-                textBox9.Enabled = false;
-                textBox10.Enabled = false;
-                textBox11.Enabled = false;
-                textBox8.Enabled = false;
-            }
+            this.loadCustomerComboBox();
             toolStripStatusLabel1.Text = TabName;
         }
+        /*
         void tabControl4_Selecting(object sender, TabControlCancelEventArgs e)
         {
             current = (sender as TabControl).SelectedTab;
@@ -281,7 +274,7 @@ namespace Clave3_Grupo04
         private void nuevoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(1);
-            tabControl2.SelectTab(0);
+            tabControl3.SelectTab(0);
         }
         /// <summary>
         /// Para eliminar a un cliente
@@ -290,8 +283,8 @@ namespace Clave3_Grupo04
         /// <param name="e"></param>
         private void eliminarToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectTab(0);
-            tabControl2.SelectTab(1);
+            tabControl1.SelectTab(1);
+            tabControl3.SelectTab(1);
         }
         /// <summary>
         /// Para editar a un cliente
@@ -300,8 +293,8 @@ namespace Clave3_Grupo04
         /// <param name="e"></param>
         private void ediarToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectTab(0);
-            tabControl2.SelectTab(2);
+            tabControl1.SelectTab(1);
+            tabControl3.SelectTab(2);
         }
         /// <summary>
         /// Para ver a todos los clientes
@@ -310,8 +303,8 @@ namespace Clave3_Grupo04
         /// <param name="e"></param>
         private void verTodosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectTab(0);
-            tabControl2.SelectTab(3);
+            tabControl1.SelectTab(1);
+            tabControl3.SelectTab(3);
         }
         /// <summary>
         /// Para crear a un nuevo cliente de tarjeta
@@ -321,7 +314,7 @@ namespace Clave3_Grupo04
         private void nuevoClienteDeTarjetaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(2);
-            tabControl2.SelectTab(0);
+            tabControl4.SelectTab(0);
         }
         /// <summary>
         /// Para generar una nueva transaccion.
@@ -331,7 +324,7 @@ namespace Clave3_Grupo04
         private void generarTransaccionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(2);
-            tabControl2.SelectTab(1);
+            tabControl4.SelectTab(1);
         }
         /// <summary>
         /// Para configurar nuevo tipo de tarjeta
@@ -341,7 +334,7 @@ namespace Clave3_Grupo04
         private void configurarNuevoTipoDeTarjetaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(2);
-            tabControl2.SelectTab(2);
+            tabControl4.SelectTab(2);
         }
         /// <summary>
         /// Para ver transacciones por periodo
@@ -351,7 +344,7 @@ namespace Clave3_Grupo04
         private void verTransaccionesPorPeriodoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(3);
-            tabControl2.SelectTab(0);
+            tabControl5.SelectTab(0);
         }
         /// <summary>
         /// Para ver aperturas por periodo
@@ -361,7 +354,7 @@ namespace Clave3_Grupo04
         private void verAperturasPorPeriodoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(3);
-            tabControl2.SelectTab(1);
+            tabControl5.SelectTab(1);
         }
         /// <summary>
         /// Para ver puntos acumulados por periodo
@@ -371,13 +364,34 @@ namespace Clave3_Grupo04
         private void cantidadDePuntosAcumuladosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(3);
-            tabControl2.SelectTab(2);
+            tabControl5.SelectTab(2);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             this.loadUser();
         }
+        public void loadCustomerComboBox() {
+            try
+            {
+                String query = "SELECT * FROM problema3pr115.user,problema3pr115.card, problema3pr115.card_type  GROUP BY card.id_card";
+                MySqlCommand command = new MySqlCommand(query,conectar);
+                MySqlDataReader reader = command.ExecuteReader();
+                Dictionary<int, String> comboSource = new Dictionary<int, String>();
+                while (reader.Read()) {
+                    comboSource.Add(reader.GetInt32("id_card"), reader.GetString("user_nickname"));
+                }
+                comboBox1.DataSource = new BindingSource(comboSource, null);
+                comboBox1.DisplayMember = "Value";
+                comboBox1.ValueMember = "Key";
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error de ejecucion.");
+            }
+        }
+        
         /// <summary>
         /// Medodo utilizado para seleccionar a todos los usuarios desde la base de datos
         /// </summary>
@@ -519,6 +533,57 @@ namespace Clave3_Grupo04
                 MessageBox.Show(ex.Message, "Error de ejecucion.");
             }
         }
+
+
+        public void loadTransaction()
+        {
+            try
+            {
+                MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT card.id_card as 'Codigo de Tarjeta', user.user_nickname as 'Nombre de Usuario',user.user_firstname as 'Primer Nombre', user.user_lastname as 'Apellidos', card_type.card_name as 'Nombre de la Tarjeta', card.percentage_credit as 'Tasa %',card.amount_credit as 'Monto Credito'  FROM problema3pr115.user ", conectar);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "user");
+                dataGridView3.DataSource = ds.Tables["user"];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error de ejecucion.");
+            }
+        }
+
+        public void insertNewTransaction(int id_card, float amountTransaction)
+        {
+            try
+            {
+                var fechaActual = DateTime.Now;
+                int points = 0;
+                if (amountTransaction > 500)
+                {
+                    points += 20;
+                }
+                else {
+                    points += 5;
+                }
+                String query = "INSERT INTO problema3pr115.card_transaction (date_created,id_card, amount_transaction, points_transactions) VALUES ('" + fechaActual.ToString("yyyy-MM-dd HH:mm:ss") + "',"+id_card+","+ amountTransaction + ","+points+")";
+                MySqlCommand command = new MySqlCommand(query, conectar);
+                MySqlDataAdapter sda = new MySqlDataAdapter();
+                sda.SelectCommand = command;
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    MessageBox.Show("Transaccion insertada con exito");
+                    this.resetFormNewUser();
+                }
+                else
+                {
+                    MessageBox.Show("La Transaccion no se ejecuto");
+                }
+                this.loadUser();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error de ejecucion.");
+            }
+        }
+       
         public void insertNewUser(String fechaActual,String txtNewNickname, String txtNewEmail, String txtNewPassword,String txtNewFirstName,String txtNewLastName, int isEmployee) {
             try
             {
@@ -1000,6 +1065,46 @@ namespace Clave3_Grupo04
             else {
                 MessageBox.Show("El nombre del tipo de tarjeta es obligatorio","Campos obligatorios");
                 txtNewCardType.Focus();
+            }
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.Text != "")
+            {
+
+            }
+            else {
+                MessageBox.Show("Debe de seleccionar el Cliente","Campos obligatorios");
+                comboBox1.Focus();
+            }
+        }
+        /// <summary>
+        /// Metodo para crear transaccion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button18_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.ValueMember!="" && dateTimePicker1.Text!="" && txtMontoTransaccion.Text!="") {
+                float amountTransaction;
+                bool eval = float.TryParse(txtMontoTransaccion.Text, out amountTransaction);
+                if (eval) {
+                    if (float.Parse(txtMontoTransaccion.Text)>0) {
+                        int userSelected;
+                        userSelected = int.Parse(comboBox1.SelectedValue.ToString());
+                        this.insertNewTransaction(userSelected, float.Parse(txtMontoTransaccion.Text));
+                    }
+                    else {
+                        MessageBox.Show("El monto de la transaccion debe de ser mayor a cero", "Monto de transaccion invalido");
+                    }
+                }
+                else {
+                    MessageBox.Show("El monto de la transaccion especificado es invalido.", "Monto de transaccion invalido");
+                }
+            }
+            else {
+                MessageBox.Show("Todos los campos son requeridos", "Campos obligatorios");
             }
         }
     }

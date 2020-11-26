@@ -176,6 +176,15 @@
             this.button15 = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
             this.txtNewCardType = new System.Windows.Forms.TextBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.button18 = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
+            this.txtMontoTransaccion = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dataGridView11 = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.groupLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -201,6 +210,7 @@
             this.tabPage12.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl4.SuspendLayout();
+            this.tabPage14.SuspendLayout();
             this.tabPage15.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabControl5.SuspendLayout();
@@ -217,6 +227,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridValiationUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView9)).BeginInit();
             this.groupBox9.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView11)).BeginInit();
             this.SuspendLayout();
             // 
             // groupLogin
@@ -362,28 +374,28 @@
             // nuevoToolStripMenuItem
             // 
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
             this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
             // eliminarToolStripMenuItem
             // 
             this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.eliminarToolStripMenuItem.Text = "Eliminar";
             this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
             // 
             // ediarToolStripMenuItem
             // 
             this.ediarToolStripMenuItem.Name = "ediarToolStripMenuItem";
-            this.ediarToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.ediarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ediarToolStripMenuItem.Text = "Ediar";
             this.ediarToolStripMenuItem.Click += new System.EventHandler(this.ediarToolStripMenuItem_Click);
             // 
             // verTodosToolStripMenuItem
             // 
             this.verTodosToolStripMenuItem.Name = "verTodosToolStripMenuItem";
-            this.verTodosToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.verTodosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.verTodosToolStripMenuItem.Text = "Ver todos";
             this.verTodosToolStripMenuItem.Click += new System.EventHandler(this.verTodosToolStripMenuItem_Click);
             // 
@@ -401,28 +413,28 @@
             // nuevoToolStripMenuItem1
             // 
             this.nuevoToolStripMenuItem1.Name = "nuevoToolStripMenuItem1";
-            this.nuevoToolStripMenuItem1.Size = new System.Drawing.Size(123, 22);
+            this.nuevoToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.nuevoToolStripMenuItem1.Text = "Nuevo";
             this.nuevoToolStripMenuItem1.Click += new System.EventHandler(this.nuevoToolStripMenuItem1_Click);
             // 
             // eliminarToolStripMenuItem1
             // 
             this.eliminarToolStripMenuItem1.Name = "eliminarToolStripMenuItem1";
-            this.eliminarToolStripMenuItem1.Size = new System.Drawing.Size(123, 22);
+            this.eliminarToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.eliminarToolStripMenuItem1.Text = "Eliminar";
             this.eliminarToolStripMenuItem1.Click += new System.EventHandler(this.eliminarToolStripMenuItem1_Click);
             // 
             // ediarToolStripMenuItem1
             // 
             this.ediarToolStripMenuItem1.Name = "ediarToolStripMenuItem1";
-            this.ediarToolStripMenuItem1.Size = new System.Drawing.Size(123, 22);
+            this.ediarToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.ediarToolStripMenuItem1.Text = "Ediar";
             this.ediarToolStripMenuItem1.Click += new System.EventHandler(this.ediarToolStripMenuItem1_Click);
             // 
             // verTodosToolStripMenuItem1
             // 
             this.verTodosToolStripMenuItem1.Name = "verTodosToolStripMenuItem1";
-            this.verTodosToolStripMenuItem1.Size = new System.Drawing.Size(123, 22);
+            this.verTodosToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.verTodosToolStripMenuItem1.Text = "Ver todos";
             this.verTodosToolStripMenuItem1.Click += new System.EventHandler(this.verTodosToolStripMenuItem1_Click);
             // 
@@ -1072,6 +1084,8 @@
             // 
             // tabPage14
             // 
+            this.tabPage14.Controls.Add(this.dataGridView11);
+            this.tabPage14.Controls.Add(this.groupBox11);
             this.tabPage14.Location = new System.Drawing.Point(4, 22);
             this.tabPage14.Name = "tabPage14";
             this.tabPage14.Padding = new System.Windows.Forms.Padding(3);
@@ -1658,6 +1672,92 @@
             this.txtNewCardType.Size = new System.Drawing.Size(158, 20);
             this.txtNewCardType.TabIndex = 14;
             // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.comboBox1);
+            this.groupBox11.Controls.Add(this.label28);
+            this.groupBox11.Controls.Add(this.dateTimePicker1);
+            this.groupBox11.Controls.Add(this.txtMontoTransaccion);
+            this.groupBox11.Controls.Add(this.label30);
+            this.groupBox11.Controls.Add(this.button18);
+            this.groupBox11.Controls.Add(this.label31);
+            this.groupBox11.Location = new System.Drawing.Point(6, 6);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(251, 302);
+            this.groupBox11.TabIndex = 20;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Generar transacción";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(6, 82);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(98, 13);
+            this.label30.TabIndex = 18;
+            this.label30.Text = "Monto transacción:";
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(124, 115);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(123, 35);
+            this.button18.TabIndex = 15;
+            this.button18.Text = "Crear transacción";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(6, 55);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(113, 13);
+            this.label31.TabIndex = 16;
+            this.label31.Text = "Fecha de transaccion:";
+            // 
+            // txtMontoTransaccion
+            // 
+            this.txtMontoTransaccion.Location = new System.Drawing.Point(124, 82);
+            this.txtMontoTransaccion.Name = "txtMontoTransaccion";
+            this.txtMontoTransaccion.Size = new System.Drawing.Size(121, 20);
+            this.txtMontoTransaccion.TabIndex = 22;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(126, 55);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(119, 20);
+            this.dateTimePicker1.TabIndex = 21;
+            // 
+            // dataGridView11
+            // 
+            this.dataGridView11.AllowUserToAddRows = false;
+            this.dataGridView11.AllowUserToDeleteRows = false;
+            this.dataGridView11.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView11.Location = new System.Drawing.Point(259, 6);
+            this.dataGridView11.Name = "dataGridView11";
+            this.dataGridView11.ReadOnly = true;
+            this.dataGridView11.Size = new System.Drawing.Size(543, 305);
+            this.dataGridView11.TabIndex = 21;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(126, 28);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 24;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(6, 28);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(114, 13);
+            this.label28.TabIndex = 23;
+            this.label28.Text = "Seleccionar al usuario:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1705,6 +1805,7 @@
             this.tabPage12.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabControl4.ResumeLayout(false);
+            this.tabPage14.ResumeLayout(false);
             this.tabPage15.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabControl5.ResumeLayout(false);
@@ -1726,6 +1827,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView9)).EndInit();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView11)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1880,6 +1984,15 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox txtNewCardType;
         private System.Windows.Forms.DataGridView dataGridView9;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox txtMontoTransaccion;
+        private System.Windows.Forms.DataGridView dataGridView11;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label28;
     }
 }
 
