@@ -89,6 +89,7 @@ namespace Clave3_Grupo04
             current = (sender as TabControl).SelectedTab;
             String TabName = current.ToString().Replace("TabPage: {", "").Replace("}", "");
             this.loadCustomerComboBox();
+            this.loadTransaction();
             toolStripStatusLabel1.Text = TabName;
         }
         /*
@@ -533,16 +534,20 @@ namespace Clave3_Grupo04
                 MessageBox.Show(ex.Message, "Error de ejecucion.");
             }
         }
-
-
         public void loadTransaction()
         {
             try
             {
-                MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT card.id_card as 'Codigo de Tarjeta', user.user_nickname as 'Nombre de Usuario',user.user_firstname as 'Primer Nombre', user.user_lastname as 'Apellidos', card_type.card_name as 'Nombre de la Tarjeta', card.percentage_credit as 'Tasa %',card.amount_credit as 'Monto Credito'  FROM problema3pr115.user ", conectar);
+                MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT card_transaction.date_created as 'Fecha de transaccion',card_transaction.id_card_transaction as 'Codigo de Transaccion', user.user_nickname as 'Nombre de Usuario',user.user_firstname as 'Primer Nombre', user.user_lastname as 'Apellidos', card_type.card_name as 'Nombre de la Tarjeta', card.percentage_credit as 'Tasa %',card.amount_credit as 'Monto Credito', card_transaction.amount_transaction as 'Monto Transaccion', card_transaction.points_transactions  as 'Puntos' FROM problema3pr115.user,problema3pr115.card, problema3pr115.card_transaction, problema3pr115.card_type WHERE user.id_user=card.id_customer AND card.id_card_type=card_type.id_card_type AND card.id_card=card_transaction.id_card GROUP BY card_transaction.id_card_transaction", conectar);
                 DataSet ds = new DataSet();
                 adapter.Fill(ds, "user");
-                dataGridView3.DataSource = ds.Tables["user"];
+                adapter.Fill(ds, "card");
+                adapter.Fill(ds, "card_transaction");
+                adapter.Fill(ds, "card_type");
+                dataGridView11.DataSource = ds.Tables["user"];
+                dataGridView11.DataSource = ds.Tables["card"];
+                dataGridView11.DataSource = ds.Tables["card_transaction"];
+                dataGridView11.DataSource = ds.Tables["card_type"];
             }
             catch (Exception ex)
             {
@@ -550,11 +555,10 @@ namespace Clave3_Grupo04
             }
         }
 
-        public void insertNewTransaction(int id_card, float amountTransaction)
+        public void insertNewTransaction(DateTime fechaActual, int id_card, float amountTransaction)
         {
             try
             {
-                var fechaActual = DateTime.Now;
                 int points = 0;
                 if (amountTransaction > 500)
                 {
@@ -1093,7 +1097,8 @@ namespace Clave3_Grupo04
                     if (float.Parse(txtMontoTransaccion.Text)>0) {
                         int userSelected;
                         userSelected = int.Parse(comboBox1.SelectedValue.ToString());
-                        this.insertNewTransaction(userSelected, float.Parse(txtMontoTransaccion.Text));
+                        this.insertNewTransaction(DateTime.Parse(dateTimePicker1.Text), userSelected, float.Parse(txtMontoTransaccion.Text));
+                        this.loadTransaction();
                     }
                     else {
                         MessageBox.Show("El monto de la transaccion debe de ser mayor a cero", "Monto de transaccion invalido");
