@@ -42,7 +42,6 @@ namespace Clave3_Grupo04
             this.loadCardType();
             /// Para detectar cual es el Tab activo
             tabControl1.Selecting += new TabControlCancelEventHandler(tabControl1_Selecting);
-            tabControl2.Selecting += new TabControlCancelEventHandler(tabControl2_Selecting);
             tabControl4.Selecting += new TabControlCancelEventHandler(tabControl4_Selecting);
             //tabControl4.Selecting += new TabControlCancelEventHandler(tabControl4_Selecting);
         }
@@ -50,32 +49,21 @@ namespace Clave3_Grupo04
         {
             current = (sender as TabControl).SelectedTab;
             String TabName = current.ToString().Replace("TabPage: {", "").Replace("}", "");
-            if (TabName == "Editar")
-            {
-                txtSearchNickname.Enabled = false;
-                txtSearchEmail.Enabled = false;
-                txtSearchFirstname.Enabled = false;
-                txtSearchLastname.Enabled = false;
-                txtSearchPassword.Enabled = false;
-            }
-            if (TabName == "Nuevo")
-            {
-                this.loadUser();
-            }
-
-            toolStripStatusLabel1.Text = TabName;
-        }
-        void tabControl2_Selecting(object sender, TabControlCancelEventArgs e)
-        {
-            current = (sender as TabControl).SelectedTab;
-            String TabName = current.ToString().Replace("TabPage: {", "").Replace("}", "");
             if (TabName == "Usuarios")
             {
                 this.loadUser();
             }
-            if (TabName == "Clientes" || TabName == "Tarjetas")
+            if (TabName == "Clientes")
             {
                 this.loadOnlyCustomer();
+            }
+            if (TabName == "Tarjetas")
+            {
+                this.loadCustomerWithCardComboBox();
+                this.loadCustomerComboBox();
+                this.loadCardsComboBox();
+                this.loadTransaction();
+                this.loadCards();
             }
             if (TabName == "Reportes")
             {
@@ -88,8 +76,10 @@ namespace Clave3_Grupo04
         {
             current = (sender as TabControl).SelectedTab;
             String TabName = current.ToString().Replace("TabPage: {", "").Replace("}", "");
+            this.loadCustomerWithCardComboBox();
             this.loadCustomerComboBox();
             this.loadTransaction();
+            this.loadCards();
             toolStripStatusLabel1.Text = TabName;
         }
         /*
@@ -372,10 +362,10 @@ namespace Clave3_Grupo04
         {
             this.loadUser();
         }
-        public void loadCustomerComboBox() {
+        public void loadCustomerWithCardComboBox() {
             try
             {
-                String query = "SELECT * FROM problema3pr115.user,problema3pr115.card, problema3pr115.card_type  GROUP BY card.id_card";
+                String query = "SELECT * FROM problema3pr115.user,problema3pr115.card WHERE user.id_user=card.id_customer GROUP BY card.id_customer";
                 MySqlCommand command = new MySqlCommand(query,conectar);
                 MySqlDataReader reader = command.ExecuteReader();
                 Dictionary<int, String> comboSource = new Dictionary<int, String>();
@@ -392,7 +382,51 @@ namespace Clave3_Grupo04
                 MessageBox.Show(ex.Message, "Error de ejecucion.");
             }
         }
-        
+        public void loadCustomerComboBox()
+        {
+            try
+            {
+                String query = "SELECT * FROM problema3pr115.user WHERE user.isEmployee=0";
+                MySqlCommand command = new MySqlCommand(query, conectar);
+                MySqlDataReader reader = command.ExecuteReader();
+                Dictionary<int, String> comboSource = new Dictionary<int, String>();
+                while (reader.Read())
+                {
+                    comboSource.Add(reader.GetInt32("id_user"), reader.GetString("user_nickname"));
+                }
+                comboBox2.DataSource = new BindingSource(comboSource, null);
+                comboBox2.DisplayMember = "Value";
+                comboBox2.ValueMember = "Key";
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error de ejecucion.");
+            }
+        }
+        public void loadCardsComboBox()
+        {
+            try
+            {
+                String query = "SELECT * FROM problema3pr115.card_type";
+                MySqlCommand command = new MySqlCommand(query, conectar);
+                MySqlDataReader reader = command.ExecuteReader();
+                Dictionary<int, String> comboSource = new Dictionary<int, String>();
+                while (reader.Read())
+                {
+                    comboSource.Add(reader.GetInt32("id_card_type"), reader.GetString("card_name"));
+                }
+                comboBox3.DataSource = new BindingSource(comboSource, null);
+                comboBox3.DisplayMember = "Value";
+                comboBox3.ValueMember = "Key";
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error de ejecucion.");
+            }
+        }
+
         /// <summary>
         /// Medodo utilizado para seleccionar a todos los usuarios desde la base de datos
         /// </summary>
@@ -412,6 +446,26 @@ namespace Clave3_Grupo04
                 MessageBox.Show(ex.Message, "Error de ejecucion.");
             }
         }
+
+        public void loadCards()
+        {
+            try
+            {
+                MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT card.date_created as 'Fecha de Apertura' ,user.user_nickname as 'Nombre de Usuario', user.user_firstname as 'Primer Nombre', user.user_lastname as 'Apellidos', card_type.card_name as 'Nombre de Tarjeta', card.percentage_credit as 'Tasa de Interes', card.amount_credit as 'Monto del Credito'  FROM problema3pr115.user,problema3pr115.card,problema3pr115.card_type WHERE user.id_user=card.id_customer AND card.id_card_type=card_type.id_card_type GROUP BY card.id_card", conectar);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "user");
+                adapter.Fill(ds, "card");
+                adapter.Fill(ds, "card_type");
+                dataGridView10.DataSource = ds.Tables["user"];
+                dataGridView10.DataSource = ds.Tables["card"];
+                dataGridView10.DataSource = ds.Tables["card_type"];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error de ejecucion.");
+            }
+        }
+
         /// <summary>
         /// Metodo para mostrar solo a los empleados
         /// </summary>
@@ -534,6 +588,9 @@ namespace Clave3_Grupo04
                 MessageBox.Show(ex.Message, "Error de ejecucion.");
             }
         }
+        /// <summary>
+        /// Modulo para cargar todas las transacciones de los Clientes.
+        /// </summary>
         public void loadTransaction()
         {
             try
@@ -604,6 +661,29 @@ namespace Clave3_Grupo04
                     MessageBox.Show("Usuario no insertado");
                 }
                 this.loadUser();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error de ejecucion.");
+            }
+        }
+        public void insertNewCard(int userSelected, int cardSelected, float tasaInteres,float montoCredito) {
+            try
+            {
+                var fechaActual = DateTime.Now;
+                String query = "INSERT INTO problema3pr115.card (date_created, id_customer, id_card_type, percentage_credit, amount_credit) VALUES ('" + fechaActual.ToString("yyyy-MM-dd HH:mm:ss") + "'," + userSelected + ","+cardSelected+","+ tasaInteres + ","+ montoCredito + ")";
+                MySqlCommand command = new MySqlCommand(query, conectar);
+                MySqlDataAdapter sda = new MySqlDataAdapter();
+                sda.SelectCommand = command;
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    this.loadCards();
+                    MessageBox.Show("Tarjeta asociada al usuario de manera correcta");
+                }
+                else
+                {
+                    MessageBox.Show("Tarjeta no asociada");
+                }
             }
             catch (Exception ex)
             {
@@ -1044,6 +1124,8 @@ namespace Clave3_Grupo04
                 this.updateCustomerById(txtEditNicknameCustomer.Text, txtEditEmailCustomer.Text, txtEditFirstNameCustomer.Text, txtLastNameCustomer.Text, txtEditPasswordCustomer.Text, int.Parse(txtEditCustomerCode.Text));
                 this.loadOnlyCustomer();
                 this.resetFormEditCustomer();
+                this.loadCustomerWithCardComboBox();
+                this.loadCustomerComboBox();
                 MessageBox.Show("Registro actualizado con exito", "Operacion exitosa");
             }
             else
@@ -1110,6 +1192,47 @@ namespace Clave3_Grupo04
             }
             else {
                 MessageBox.Show("Todos los campos son requeridos", "Campos obligatorios");
+            }
+        }
+        /// <summary>
+        /// Metodo para asociar una tarjeta a un usuario en especifico. Esto se refiere a las aperturas de las cuentas.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button17_Click_1(object sender, EventArgs e)
+        {
+            if (txtTasaInteres.Text!="" && txtMontoCredito.Text!="") {
+                float amountCredito;
+                float tasaInteres;
+                bool evalAmountCredito = float.TryParse(txtMontoCredito.Text, out amountCredito);
+                bool evalTasaInteres = float.TryParse(txtTasaInteres.Text, out tasaInteres);
+                if (evalAmountCredito) {
+                    if (evalTasaInteres) {
+                        if (float.Parse(txtMontoCredito.Text) > 0)
+                        {
+                            if (float.Parse(txtTasaInteres.Text)>0 && float.Parse(txtTasaInteres.Text) <= 100) {
+                                int userSelected;
+                                userSelected = int.Parse(comboBox2.SelectedValue.ToString());
+                                int cardSelected;
+                                cardSelected = int.Parse(comboBox3.SelectedValue.ToString());
+                                this.insertNewCard(userSelected, cardSelected, float.Parse(txtTasaInteres.Text), float.Parse(txtMontoCredito.Text));
+                            }
+                        }
+                        else {
+                            MessageBox.Show("El monto no puede ser cero, o mayor a 100%.", "Monto invalido");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("La tasa de interes invalido, no es un numero valido.", "Tasa de interes invalida");
+                    }
+                }
+                else {
+                    MessageBox.Show("El monto del credito es invalido, no es un monto valido.","Monto invalido");
+                }
+            }
+            else {
+                MessageBox.Show("La tasa de interes, y el monto del credito son obligatorios", "Campos obligatorios");
             }
         }
     }

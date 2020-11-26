@@ -185,6 +185,17 @@
             this.dataGridView11 = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.button17 = new System.Windows.Forms.Button();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.txtMontoCredito = new System.Windows.Forms.TextBox();
+            this.txtTasaInteres = new System.Windows.Forms.TextBox();
+            this.dataGridView10 = new System.Windows.Forms.DataGridView();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.groupLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -210,6 +221,7 @@
             this.tabPage12.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl4.SuspendLayout();
+            this.tabPage13.SuspendLayout();
             this.tabPage14.SuspendLayout();
             this.tabPage15.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -229,6 +241,8 @@
             this.groupBox9.SuspendLayout();
             this.groupBox11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView11)).BeginInit();
+            this.groupBox10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView10)).BeginInit();
             this.SuspendLayout();
             // 
             // groupLogin
@@ -1074,6 +1088,8 @@
             // 
             // tabPage13
             // 
+            this.tabPage13.Controls.Add(this.dataGridView10);
+            this.tabPage13.Controls.Add(this.groupBox10);
             this.tabPage13.Location = new System.Drawing.Point(4, 22);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
@@ -1631,7 +1647,7 @@
             this.dataGridView9.Location = new System.Drawing.Point(226, 14);
             this.dataGridView9.Name = "dataGridView9";
             this.dataGridView9.ReadOnly = true;
-            this.dataGridView9.Size = new System.Drawing.Size(543, 290);
+            this.dataGridView9.Size = new System.Drawing.Size(543, 141);
             this.dataGridView9.TabIndex = 10;
             // 
             // groupBox9
@@ -1641,7 +1657,7 @@
             this.groupBox9.Controls.Add(this.txtNewCardType);
             this.groupBox9.Location = new System.Drawing.Point(4, 14);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(205, 281);
+            this.groupBox9.Size = new System.Drawing.Size(205, 135);
             this.groupBox9.TabIndex = 14;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Nuevos tipos de tarjetas";
@@ -1683,7 +1699,7 @@
             this.groupBox11.Controls.Add(this.label31);
             this.groupBox11.Location = new System.Drawing.Point(6, 6);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(251, 302);
+            this.groupBox11.Size = new System.Drawing.Size(251, 173);
             this.groupBox11.TabIndex = 20;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Generar transacción";
@@ -1738,7 +1754,7 @@
             this.dataGridView11.Location = new System.Drawing.Point(259, 6);
             this.dataGridView11.Name = "dataGridView11";
             this.dataGridView11.ReadOnly = true;
-            this.dataGridView11.Size = new System.Drawing.Size(543, 305);
+            this.dataGridView11.Size = new System.Drawing.Size(543, 173);
             this.dataGridView11.TabIndex = 21;
             // 
             // comboBox1
@@ -1754,9 +1770,114 @@
             this.label28.AutoSize = true;
             this.label28.Location = new System.Drawing.Point(6, 28);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(114, 13);
+            this.label28.Size = new System.Drawing.Size(111, 13);
             this.label28.TabIndex = 23;
-            this.label28.Text = "Seleccionar al usuario:";
+            this.label28.Text = "Seleccionar al cliente:";
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.comboBox3);
+            this.groupBox10.Controls.Add(this.comboBox2);
+            this.groupBox10.Controls.Add(this.button17);
+            this.groupBox10.Controls.Add(this.label32);
+            this.groupBox10.Controls.Add(this.label33);
+            this.groupBox10.Controls.Add(this.label34);
+            this.groupBox10.Controls.Add(this.label35);
+            this.groupBox10.Controls.Add(this.txtMontoCredito);
+            this.groupBox10.Controls.Add(this.txtTasaInteres);
+            this.groupBox10.Location = new System.Drawing.Point(6, 17);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(281, 206);
+            this.groupBox10.TabIndex = 1;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Aperturas de tarjeta";
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(134, 122);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(141, 23);
+            this.button17.TabIndex = 11;
+            this.button17.Text = "Asociar Tarjeta al cliente";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click_1);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(9, 103);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(93, 13);
+            this.label32.TabIndex = 9;
+            this.label32.Text = "Monto del Credito:";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(9, 77);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(83, 13);
+            this.label33.TabIndex = 8;
+            this.label33.Text = "Tasa de interes:";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(6, 51);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(95, 13);
+            this.label34.TabIndex = 7;
+            this.label34.Text = "Tarjeta ha asociar:";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(6, 21);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(112, 13);
+            this.label35.TabIndex = 6;
+            this.label35.Text = "Seleccionar al Cliente:";
+            // 
+            // txtMontoCredito
+            // 
+            this.txtMontoCredito.Location = new System.Drawing.Point(133, 96);
+            this.txtMontoCredito.Name = "txtMontoCredito";
+            this.txtMontoCredito.Size = new System.Drawing.Size(142, 20);
+            this.txtMontoCredito.TabIndex = 3;
+            // 
+            // txtTasaInteres
+            // 
+            this.txtTasaInteres.Location = new System.Drawing.Point(133, 70);
+            this.txtTasaInteres.Name = "txtTasaInteres";
+            this.txtTasaInteres.Size = new System.Drawing.Size(142, 20);
+            this.txtTasaInteres.TabIndex = 2;
+            // 
+            // dataGridView10
+            // 
+            this.dataGridView10.AllowUserToAddRows = false;
+            this.dataGridView10.AllowUserToDeleteRows = false;
+            this.dataGridView10.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView10.Location = new System.Drawing.Point(293, 21);
+            this.dataGridView10.Name = "dataGridView10";
+            this.dataGridView10.ReadOnly = true;
+            this.dataGridView10.Size = new System.Drawing.Size(513, 202);
+            this.dataGridView10.TabIndex = 2;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(134, 18);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(141, 21);
+            this.comboBox2.TabIndex = 12;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(134, 43);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(141, 21);
+            this.comboBox3.TabIndex = 13;
             // 
             // Form1
             // 
@@ -1805,6 +1926,7 @@
             this.tabPage12.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabControl4.ResumeLayout(false);
+            this.tabPage13.ResumeLayout(false);
             this.tabPage14.ResumeLayout(false);
             this.tabPage15.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
@@ -1830,6 +1952,9 @@
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView11)).EndInit();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1993,6 +2118,17 @@
         private System.Windows.Forms.DataGridView dataGridView11;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox txtMontoCredito;
+        private System.Windows.Forms.TextBox txtTasaInteres;
+        private System.Windows.Forms.DataGridView dataGridView10;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
 
