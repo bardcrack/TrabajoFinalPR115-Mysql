@@ -43,6 +43,7 @@ namespace Clave3_Grupo04
             /// Para detectar cual es el Tab activo
             tabControl1.Selecting += new TabControlCancelEventHandler(tabControl1_Selecting);
             tabControl4.Selecting += new TabControlCancelEventHandler(tabControl4_Selecting);
+            tabControl5.Selecting += new TabControlCancelEventHandler(tabControl5_Selecting);
             //tabControl4.Selecting += new TabControlCancelEventHandler(tabControl4_Selecting);
         }
         void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
@@ -82,6 +83,14 @@ namespace Clave3_Grupo04
             this.loadCards();
             toolStripStatusLabel1.Text = TabName;
         }
+        void tabControl5_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            current = (sender as TabControl).SelectedTab;
+            String TabName = current.ToString().Replace("TabPage: {", "").Replace("}", "");
+            this.loadPuntosAcumulados();
+            toolStripStatusLabel1.Text = TabName;
+        }
+        
         /*
         void tabControl4_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -611,7 +620,77 @@ namespace Clave3_Grupo04
                 MessageBox.Show(ex.Message, "Error de ejecucion.");
             }
         }
-
+        /// <summary>
+        /// Consulta para seleccionar las transacciones de un periodo
+        /// </summary>
+        public void loadTransactionBetweenDate(DateTime stardPeriod, DateTime endPeriod)
+        {
+            try
+            {
+                String query = "SELECT card_transaction.date_created as 'Fecha de transaccion',card_transaction.id_card_transaction as 'Codigo de Transaccion', user.user_nickname as 'Nombre de Usuario',user.user_firstname as 'Primer Nombre', user.user_lastname as 'Apellidos', card_type.card_name as 'Nombre de la Tarjeta', card.percentage_credit as 'Tasa %',card.amount_credit as 'Monto Credito', card_transaction.amount_transaction as 'Monto Transaccion', card_transaction.points_transactions  as 'Puntos' FROM problema3pr115.user,problema3pr115.card, problema3pr115.card_transaction, problema3pr115.card_type WHERE user.id_user=card.id_customer AND card.id_card_type=card_type.id_card_type AND card.id_card=card_transaction.id_card AND card_transaction.date_created BETWEEN'" + stardPeriod.ToString("yyyy-MM-dd") + "' AND '" + endPeriod.ToString("yyyy-MM-dd") + "' GROUP BY card_transaction.id_card_transaction ORDER BY card_transaction.date_created ASC";
+                MySqlDataAdapter adapter = new MySqlDataAdapter(query, conectar);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "user");
+                adapter.Fill(ds, "card");
+                adapter.Fill(ds, "card_transaction");
+                adapter.Fill(ds, "card_type");
+                dataGridView12.DataSource = ds.Tables["user"];
+                dataGridView12.DataSource = ds.Tables["card"];
+                dataGridView12.DataSource = ds.Tables["card_transaction"];
+                dataGridView12.DataSource = ds.Tables["card_type"];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error de ejecucion.");
+            }
+        }
+        /// <summary>
+        /// Ver los puntos acumulados de los usuarios
+        /// </summary>
+        /// <param name="stardPeriod"></param>
+        /// <param name="endPeriod"></param>
+        public void loadPuntosAcumulados()
+        {
+            try
+            {
+                String query = "SELECT SUM(card_transaction.points_transactions) as 'Puntos Acumulados',user.user_nickname as 'Nombre de Usuario',user.user_firstname as 'Primer Nombre',user.user_lastname as 'Apellidos' FROM problema3pr115.user,problema3pr115.card,problema3pr115.card_transaction,problema3pr115.card_type WHERE user.id_user=card.id_customer AND card.id_card_type=card_type.id_card_type AND card.id_card=card_transaction.id_card GROUP BY user.id_user ORDER BY user.user_nickname ASC";
+                MySqlDataAdapter adapter = new MySqlDataAdapter(query, conectar);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "user");
+                adapter.Fill(ds, "card");
+                adapter.Fill(ds, "card_transaction");
+                adapter.Fill(ds, "card_type");
+                dataGridView14.DataSource = ds.Tables["user"];
+                dataGridView14.DataSource = ds.Tables["card"];
+                dataGridView14.DataSource = ds.Tables["card_transaction"];
+                dataGridView14.DataSource = ds.Tables["card_type"];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error de ejecucion.");
+            }
+        }
+        public void loadAperturasBetweenDate(DateTime stardPeriod, DateTime endPeriod)
+        {
+            try
+            {
+                String query = "SELECT card.date_created as 'Fecha de Apertura',user.user_nickname as 'Nombre de Usuario',user.user_firstname as 'Primer Nombre',user.user_lastname as 'Apellidos',card_type.card_name as 'Nombre de la Tarjeta',card.percentage_credit as 'Tasa %',card.amount_credit as 'Monto Credito' FROM problema3pr115.user,problema3pr115.card,problema3pr115.card_type WHERE user.id_user=card.id_customer AND card.id_card_type=card_type.id_card_type AND card.date_created BETWEEN '" + stardPeriod.ToString("yyyy-MM-dd") + "' AND '" + endPeriod.ToString("yyyy-MM-dd") + "' GROUP BY card.id_card ORDER BY card.date_created ASC";
+                MySqlDataAdapter adapter = new MySqlDataAdapter(query, conectar);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "user");
+                adapter.Fill(ds, "card");
+                adapter.Fill(ds, "card_transaction");
+                adapter.Fill(ds, "card_type");
+                dataGridView13.DataSource = ds.Tables["user"];
+                dataGridView13.DataSource = ds.Tables["card"];
+                dataGridView13.DataSource = ds.Tables["card_transaction"];
+                dataGridView13.DataSource = ds.Tables["card_type"];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error de ejecucion.");
+            }
+        }
         public void insertNewTransaction(DateTime fechaActual, int id_card, float amountTransaction)
         {
             try
@@ -1233,6 +1312,66 @@ namespace Clave3_Grupo04
             }
             else {
                 MessageBox.Show("La tasa de interes, y el monto del credito son obligatorios", "Campos obligatorios");
+            }
+        }
+        /// <summary>
+        /// Metodo para filtrar las transacciones por periodo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button19_Click(object sender, EventArgs e)
+        {
+            DateTime date1 = DateTime.Parse(dateTimePickerFromTransaction.Text);
+            DateTime date2 = DateTime.Parse(dateTimePickerToTransaction.Text);
+            String StartDate = dateTimePickerFromTransaction.Value.ToString("MM/dd/yyyy");
+            String EndDate = dateTimePickerToTransaction.Value.ToString("MM/dd/yyyy");
+            double result = (date2 - date1).TotalDays;
+            if (dateTimePickerFromTransaction.Text != "" && dateTimePickerToTransaction.Text != "")
+            {
+                if (result >= 0)
+                {
+                    this.loadTransactionBetweenDate(date1,date2);
+                    dateTimePickerFromTransaction.Text = "";
+                    dateTimePickerToTransaction.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("La fecha de inicio tiene que ser mayor que la fecha de fin.", "Fechas incorrectas");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe de seleccionar las fechas de inicio y fin para ver los resultados", "Campos obligatorios");
+            }
+        }
+        /// <summary>
+        /// Metodo para realizar busquedas de aperturas por periodo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button21_Click(object sender, EventArgs e)
+        {
+            DateTime date1 = DateTime.Parse(dateTimeStartAperturas.Text);
+            DateTime date2 = DateTime.Parse(dateTimeEndAperturas.Text);
+            String StartDate = dateTimeStartAperturas.Value.ToString("MM/dd/yyyy");
+            String EndDate = dateTimeEndAperturas.Value.ToString("MM/dd/yyyy");
+            double result = (date2 - date1).TotalDays;
+            if (dateTimeEndAperturas.Text != "" && dateTimeStartAperturas.Text != "")
+            {
+                if (result >= 0)
+                {
+                    this.loadAperturasBetweenDate(date1, date2);
+                    dateTimeStartAperturas.Text = "";
+                    dateTimeEndAperturas.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("La fecha de inicio tiene que ser mayor que la fecha de fin.", "Fechas incorrectas");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe de seleccionar las fechas de inicio y fin para ver los resultados", "Campos obligatorios");
             }
         }
     }

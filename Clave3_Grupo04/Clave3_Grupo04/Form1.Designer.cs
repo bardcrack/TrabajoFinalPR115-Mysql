@@ -196,6 +196,27 @@
             this.dataGridView10 = new System.Windows.Forms.DataGridView();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.dataGridView12 = new System.Windows.Forms.DataGridView();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.dateTimePickerFromTransaction = new System.Windows.Forms.DateTimePicker();
+            this.button19 = new System.Windows.Forms.Button();
+            this.dateTimePickerToTransaction = new System.Windows.Forms.DateTimePicker();
+            this.label36 = new System.Windows.Forms.Label();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label38 = new System.Windows.Forms.Label();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.button20 = new System.Windows.Forms.Button();
+            this.dataGridView13 = new System.Windows.Forms.DataGridView();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.dateTimeEndAperturas = new System.Windows.Forms.DateTimePicker();
+            this.label40 = new System.Windows.Forms.Label();
+            this.dateTimeStartAperturas = new System.Windows.Forms.DateTimePicker();
+            this.button21 = new System.Windows.Forms.Button();
+            this.dataGridView14 = new System.Windows.Forms.DataGridView();
             this.groupLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -226,6 +247,9 @@
             this.tabPage15.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabControl5.SuspendLayout();
+            this.tabPage16.SuspendLayout();
+            this.tabPage17.SuspendLayout();
+            this.tabPage18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
@@ -243,6 +267,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView11)).BeginInit();
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView12)).BeginInit();
+            this.groupBox12.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView13)).BeginInit();
+            this.groupBox14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView14)).BeginInit();
             this.SuspendLayout();
             // 
             // groupLogin
@@ -1144,6 +1174,9 @@
             // 
             // tabPage16
             // 
+            this.tabPage16.Controls.Add(this.dataGridView12);
+            this.tabPage16.Controls.Add(this.groupBox13);
+            this.tabPage16.Controls.Add(this.groupBox12);
             this.tabPage16.Location = new System.Drawing.Point(4, 22);
             this.tabPage16.Name = "tabPage16";
             this.tabPage16.Padding = new System.Windows.Forms.Padding(3);
@@ -1154,6 +1187,8 @@
             // 
             // tabPage17
             // 
+            this.tabPage17.Controls.Add(this.dataGridView13);
+            this.tabPage17.Controls.Add(this.groupBox14);
             this.tabPage17.Location = new System.Drawing.Point(4, 22);
             this.tabPage17.Name = "tabPage17";
             this.tabPage17.Padding = new System.Windows.Forms.Padding(3);
@@ -1164,6 +1199,7 @@
             // 
             // tabPage18
             // 
+            this.tabPage18.Controls.Add(this.dataGridView14);
             this.tabPage18.Location = new System.Drawing.Point(4, 22);
             this.tabPage18.Name = "tabPage18";
             this.tabPage18.Size = new System.Drawing.Size(812, 314);
@@ -1879,6 +1915,204 @@
             this.comboBox3.Size = new System.Drawing.Size(141, 21);
             this.comboBox3.TabIndex = 13;
             // 
+            // dataGridView12
+            // 
+            this.dataGridView12.AllowUserToAddRows = false;
+            this.dataGridView12.AllowUserToDeleteRows = false;
+            this.dataGridView12.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView12.Location = new System.Drawing.Point(404, 6);
+            this.dataGridView12.Name = "dataGridView12";
+            this.dataGridView12.ReadOnly = true;
+            this.dataGridView12.Size = new System.Drawing.Size(398, 173);
+            this.dataGridView12.TabIndex = 23;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.label36);
+            this.groupBox12.Controls.Add(this.dateTimePickerToTransaction);
+            this.groupBox12.Controls.Add(this.label29);
+            this.groupBox12.Controls.Add(this.dateTimePickerFromTransaction);
+            this.groupBox12.Controls.Add(this.button19);
+            this.groupBox12.Location = new System.Drawing.Point(6, 6);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(392, 173);
+            this.groupBox12.TabIndex = 22;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Transacciones por periodo";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(6, 28);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(38, 13);
+            this.label29.TabIndex = 23;
+            this.label29.Text = "Desde";
+            // 
+            // dateTimePickerFromTransaction
+            // 
+            this.dateTimePickerFromTransaction.Location = new System.Drawing.Point(9, 47);
+            this.dateTimePickerFromTransaction.Name = "dateTimePickerFromTransaction";
+            this.dateTimePickerFromTransaction.Size = new System.Drawing.Size(119, 20);
+            this.dateTimePickerFromTransaction.TabIndex = 21;
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(134, 47);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(123, 20);
+            this.button19.TabIndex = 15;
+            this.button19.Text = "Realizar Busqueda";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // dateTimePickerToTransaction
+            // 
+            this.dateTimePickerToTransaction.Location = new System.Drawing.Point(267, 47);
+            this.dateTimePickerToTransaction.Name = "dateTimePickerToTransaction";
+            this.dateTimePickerToTransaction.Size = new System.Drawing.Size(119, 20);
+            this.dateTimePickerToTransaction.TabIndex = 24;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(264, 31);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(35, 13);
+            this.label36.TabIndex = 25;
+            this.label36.Text = "Hasta";
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.label37);
+            this.groupBox13.Controls.Add(this.dateTimePicker2);
+            this.groupBox13.Controls.Add(this.label38);
+            this.groupBox13.Controls.Add(this.dateTimePicker3);
+            this.groupBox13.Controls.Add(this.button20);
+            this.groupBox13.Location = new System.Drawing.Point(6, 6);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(392, 173);
+            this.groupBox13.TabIndex = 22;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Transacciones por periodo";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(264, 31);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(35, 13);
+            this.label37.TabIndex = 25;
+            this.label37.Text = "Hasta";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(267, 47);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(119, 20);
+            this.dateTimePicker2.TabIndex = 24;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(6, 28);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(38, 13);
+            this.label38.TabIndex = 23;
+            this.label38.Text = "Desde";
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.Location = new System.Drawing.Point(9, 47);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(119, 20);
+            this.dateTimePicker3.TabIndex = 21;
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(134, 47);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(123, 20);
+            this.button20.TabIndex = 15;
+            this.button20.Text = "Realizar Busqueda";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // dataGridView13
+            // 
+            this.dataGridView13.AllowUserToAddRows = false;
+            this.dataGridView13.AllowUserToDeleteRows = false;
+            this.dataGridView13.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView13.Location = new System.Drawing.Point(404, 6);
+            this.dataGridView13.Name = "dataGridView13";
+            this.dataGridView13.ReadOnly = true;
+            this.dataGridView13.Size = new System.Drawing.Size(398, 173);
+            this.dataGridView13.TabIndex = 25;
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.label39);
+            this.groupBox14.Controls.Add(this.dateTimeEndAperturas);
+            this.groupBox14.Controls.Add(this.label40);
+            this.groupBox14.Controls.Add(this.dateTimeStartAperturas);
+            this.groupBox14.Controls.Add(this.button21);
+            this.groupBox14.Location = new System.Drawing.Point(6, 6);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(392, 173);
+            this.groupBox14.TabIndex = 24;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Aperturas por periodo";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(264, 31);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(35, 13);
+            this.label39.TabIndex = 25;
+            this.label39.Text = "Hasta";
+            // 
+            // dateTimeEndAperturas
+            // 
+            this.dateTimeEndAperturas.Location = new System.Drawing.Point(267, 47);
+            this.dateTimeEndAperturas.Name = "dateTimeEndAperturas";
+            this.dateTimeEndAperturas.Size = new System.Drawing.Size(119, 20);
+            this.dateTimeEndAperturas.TabIndex = 24;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(6, 28);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(38, 13);
+            this.label40.TabIndex = 23;
+            this.label40.Text = "Desde";
+            // 
+            // dateTimeStartAperturas
+            // 
+            this.dateTimeStartAperturas.Location = new System.Drawing.Point(9, 47);
+            this.dateTimeStartAperturas.Name = "dateTimeStartAperturas";
+            this.dateTimeStartAperturas.Size = new System.Drawing.Size(119, 20);
+            this.dateTimeStartAperturas.TabIndex = 21;
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(134, 47);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(123, 20);
+            this.button21.TabIndex = 15;
+            this.button21.Text = "Realizar Busqueda";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
+            // dataGridView14
+            // 
+            this.dataGridView14.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView14.Location = new System.Drawing.Point(12, 20);
+            this.dataGridView14.Name = "dataGridView14";
+            this.dataGridView14.Size = new System.Drawing.Size(778, 173);
+            this.dataGridView14.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1931,6 +2165,9 @@
             this.tabPage15.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabControl5.ResumeLayout(false);
+            this.tabPage16.ResumeLayout(false);
+            this.tabPage17.ResumeLayout(false);
+            this.tabPage18.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
@@ -1955,6 +2192,15 @@
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView12)).EndInit();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView13)).EndInit();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView14)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2129,6 +2375,27 @@
         private System.Windows.Forms.DataGridView dataGridView10;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.DataGridView dataGridView12;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.DateTimePicker dateTimePickerToTransaction;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFromTransaction;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.DataGridView dataGridView13;
+        private System.Windows.Forms.GroupBox groupBox14;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.DateTimePicker dateTimeEndAperturas;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.DateTimePicker dateTimeStartAperturas;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.DataGridView dataGridView14;
     }
 }
 
